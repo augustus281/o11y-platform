@@ -1,0 +1,23 @@
+apiVersion: jaegertracing.io/v1
+kind: Jaeger
+metadata:
+  name: jaeger
+  namespace: observability
+spec:
+  strategy: allInOne
+  allInOne:
+    image: jaegertracing/all-in-one:latest
+    options:
+      log-level: info
+      memory:
+        max-traces: 50000
+  storage:
+    type: memory
+  ingress:
+    enabled: false
+  ui:
+    options:
+      dependencies:
+        menuEnabled: true
+      tracking:
+        gaID: UA-000000-2
